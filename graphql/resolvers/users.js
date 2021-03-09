@@ -23,8 +23,8 @@ const generateToken = (user) => {
 
 module.exports = {
 	Mutation: {
-		async register(parent, args, context, info) {
-			let {
+		register: async (parent, args, context, info) => {
+			const {
 				registerInput: { username, email, password, confirmPassword },
 			} = args;
 			//	validate user data
@@ -50,12 +50,12 @@ module.exports = {
 			}
 
 			//	hash password and create an auth token
-			password = await bcrypt.hash(password, 12);
+			const hashedPassword = await bcrypt.hash(password, 12);
 
 			const newUser = new User({
 				username,
 				email,
-				password,
+				hashedPassword,
 				createdAt: new Date().toISOString(),
 			});
 
@@ -70,8 +70,8 @@ module.exports = {
 			};
 		},
 
-		async login(parent, args, context, info) {
-			let { username, password } = args;
+		login: async (parent, args, context, info) => {
+			const { username, password } = args;
 
 			const { valid, errors } = validateLoginInput(username, password);
 
