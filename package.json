@@ -9,8 +9,10 @@
 	},
 	"dependencies": {
 		"apollo-server": "^2.21.0",
+		"bcryptjs": "^2.4.3",
 		"dotenv": "^8.2.0",
 		"graphql": "^15.5.0",
+		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^5.11.19"
 	},
 	"devDependencies": {
